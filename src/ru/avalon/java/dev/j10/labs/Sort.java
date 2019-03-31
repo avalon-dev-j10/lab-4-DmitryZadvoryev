@@ -13,6 +13,12 @@ import java.util.Comparator;
  * @see Comparator
  */
 public interface Sort {
+    
+    default void swap(Object[] array, int i, int j) {
+        Object temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;    
+    }
 
     /**
      * Выполняет сортировку переданного массива объектов.

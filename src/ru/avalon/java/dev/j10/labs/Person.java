@@ -15,8 +15,7 @@ import java.util.Date;
  * который старше.
  */
 public interface Person extends Comparable {
-
-    /**
+ /**
      * Возвращает имя человека.
      *
      * @return имя человека в виде строки
@@ -30,4 +29,17 @@ public interface Person extends Comparable {
      * {@link Date}
      */
     Date getBirthDate();
+    
+    default int compareTo(Object object) {
+        Person that = (Person) object;
+        if (this.getName().compareTo(that.getName()) > 0) {
+            return 1;
+        } else if ((this.getName().compareTo(that.getName()) == 0) && (this.getBirthDate().compareTo(that.getBirthDate()) > 0)) {
+            return 1;
+        } else if (this.getName().compareTo(that.getName()) < 0) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
 }
